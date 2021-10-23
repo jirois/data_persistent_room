@@ -11,8 +11,8 @@ import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.jinncyapps.roomdata.R
-import com.jinncyapps.roomdata.data.User
-import com.jinncyapps.roomdata.data.UserViewModel
+import com.jinncyapps.roomdata.model.User
+import com.jinncyapps.roomdata.viewModel.UserViewModel
 import com.jinncyapps.roomdata.databinding.FragmentAddBinding
 
 class AddFragment : Fragment() {

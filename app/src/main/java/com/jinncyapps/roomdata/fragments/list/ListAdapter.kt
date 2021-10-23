@@ -1,12 +1,15 @@
 package com.jinncyapps.roomdata.fragments.list
 
+import android.text.Layout
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.constraintlayout.widget.ConstraintSet
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.jinncyapps.roomdata.R
-import com.jinncyapps.roomdata.data.User
+import com.jinncyapps.roomdata.model.User
 
 class ListAdapter: RecyclerView.Adapter<ListAdapter.MyViewHolder>() {
 
@@ -27,6 +30,12 @@ class ListAdapter: RecyclerView.Adapter<ListAdapter.MyViewHolder>() {
         holder.itemView.findViewById<TextView>(R.id.tv_firstName).text = currentItem.firstName
         holder.itemView.findViewById<TextView>(R.id.tv_lastName).text = currentItem.lastName
         holder.itemView.findViewById<TextView>(R.id.tv_age).text = currentItem.age.toString()
+
+        holder.itemView.findViewById<View>(R.id.root_layout).setOnClickListener {
+            val action = ListFragmentDirections.actionListFragmentToUpdateFragment(currentItem)
+            holder.itemView.findNavController().navigate(action)
+
+        }
     }
 
     override fun getItemCount(): Int {

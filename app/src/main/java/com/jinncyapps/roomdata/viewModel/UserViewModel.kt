@@ -1,9 +1,12 @@
-package com.jinncyapps.roomdata.data
+package com.jinncyapps.roomdata.viewModel
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.viewModelScope
+import com.jinncyapps.roomdata.data.UserDatabase
+import com.jinncyapps.roomdata.model.User
+import com.jinncyapps.roomdata.repository.UserRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
@@ -17,9 +20,26 @@ class UserViewModel(application: Application): AndroidViewModel(application) {
         userRepository = UserRepository(useDao)
     }
 
-    fun addUser(user:User){
+    fun addUser(user: User){
         viewModelScope.launch(Dispatchers.IO) {
             userRepository.addUser(user)
+        }
+    }
+    fun updateUser(user: User){
+        viewModelScope.launch(Dispatchers.IO) {
+            userRepository.updateUser(user)
+        }
+    }
+
+    fun deleteUser(user: User){
+        viewModelScope.launch(Dispatchers.IO) {
+            userRepository.deleteUser(user)
+        }
+    }
+
+    fun deleteAll(){
+        viewModelScope.launch(Dispatchers.IO) {
+            userRepository.deleteAll()
         }
     }
 }
