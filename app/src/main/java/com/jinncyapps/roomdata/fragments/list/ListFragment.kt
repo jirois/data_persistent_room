@@ -6,13 +6,17 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.jinncyapps.roomdata.R
 import com.jinncyapps.roomdata.data.UserViewModel
 import com.jinncyapps.roomdata.databinding.FragmentListBinding
 
 
 class ListFragment : Fragment() {
+    private lateinit var mUserViewModel: UserViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -25,6 +29,19 @@ class ListFragment : Fragment() {
             findNavController().navigate(R.id.action_listFragment_to_addFragment)
         }
 
+
+        //Recyclerview
+        val adapter = ListAdapter()
+        val recyclerView = binding.rvListRecyclerview
+        recyclerView.adapter = adapter
+        recyclerView.layoutManager = LinearLayoutManager(requireContext())
+
+
+        //ViewModel
+        mUserViewModel = ViewModelProvider(this).get(UserViewModel::class.java)
+        mUserViewModel.readAllData.observe(viewLifecycleOwner, Observer { user ->
+            adapter.setData(user)
+        })
 
         return binding.root
     }
