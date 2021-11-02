@@ -26,9 +26,8 @@ class ListAdapter: RecyclerView.Adapter<ListAdapter.MyViewHolder>() {
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         val currentItem = userList[position]
-        holder.itemView.findViewById<TextView>(R.id.tv_id).text = currentItem.id.toString()
-        holder.itemView.findViewById<TextView>(R.id.tv_firstName).text = currentItem.firstName
-        holder.itemView.findViewById<TextView>(R.id.tv_lastName).text = currentItem.lastName
+        holder.itemView.findViewById<TextView>(R.id.tv_firstname).text = currentItem.firstName
+        holder.itemView.findViewById<TextView>(R.id.tv_lastname).text = currentItem.lastName.toString()
         holder.itemView.findViewById<TextView>(R.id.tv_age).text = currentItem.age.toString()
 
         holder.itemView.findViewById<View>(R.id.root_layout).setOnClickListener {

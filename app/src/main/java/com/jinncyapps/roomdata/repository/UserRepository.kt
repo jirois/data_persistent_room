@@ -3,6 +3,7 @@ package com.jinncyapps.roomdata.repository
 import androidx.lifecycle.LiveData
 import com.jinncyapps.roomdata.data.UserDao
 import com.jinncyapps.roomdata.model.User
+import kotlinx.coroutines.flow.Flow
 
 class UserRepository(private val userDao: UserDao) {
 
@@ -22,5 +23,9 @@ class UserRepository(private val userDao: UserDao) {
 
     suspend fun deleteAll(){
         userDao.deleteAll()
+    }
+
+    fun searchDatabase(searchQuery: String): Flow<List<User>> {
+        return userDao.searchDatabase(searchQuery)
     }
 }

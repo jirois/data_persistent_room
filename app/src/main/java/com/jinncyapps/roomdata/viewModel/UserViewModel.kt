@@ -3,6 +3,7 @@ package com.jinncyapps.roomdata.viewModel
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope
 import com.jinncyapps.roomdata.data.UserDatabase
 import com.jinncyapps.roomdata.model.User
@@ -42,5 +43,9 @@ class UserViewModel(application: Application): AndroidViewModel(application) {
         viewModelScope.launch(Dispatchers.IO) {
             userRepository.deleteAll()
         }
+    }
+
+    fun searchDatabase(searchQuery: String): LiveData<List<User>> {
+        return userRepository.searchDatabase(searchQuery).asLiveData()
     }
 }
